@@ -20,7 +20,13 @@
 			>
 			<a href="{% url 'users:login' %}"
 				><span role="img" aria-label="User Login" title="user">🔒</span>user login</a
-			>
+			> |
+			<form class="logout" action="{% url 'users:logout' %}" method="post">
+				{% csrf_token %}
+				<button class="logout-button" aria-label="User Logout" title="user logout">
+					🙋
+				</button>
+			</form>
 			
 		</nav>
 		<main>{% block content %} {% endblock content %}</main>
