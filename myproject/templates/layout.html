@@ -11,23 +11,40 @@
 	<body>
 		<nav>
 			<a href="/"><span role="img" aria-label="Home" title="home">🏠</span></a>
-			<a href="/about"><span role="img" aria-label="About" title="about">✒️</span> about</a>
+			<a href="/about"
+				><span role="img" aria-label="About" title="about">✒️</span> about</a
+			>
 			<a href="{% url 'posts:list' %}"
 				><span role="img" aria-label="Posts" title="posts">📰</span> Post</a
 			>
-			<a href="{% url 'users:register' %}"
-				><span role="img" aria-label="User Registration" title="user">🚀</span>user register</a
+			| {% if user.is_authenticated %}
+			<a href="{% url 'posts:new-post' %}"
+				><span role="img" aria-label="New Post" title="New Posts"
+					>new post</span
+				></a
 			>
-			<a href="{% url 'users:login' %}"
-				><span role="img" aria-label="User Login" title="user">🔒</span>user login</a
-			> |
+			|
 			<form class="logout" action="{% url 'users:logout' %}" method="post">
 				{% csrf_token %}
-				<button class="logout-button" aria-label="User Logout" title="user logout">
+				<button
+					class="logout-button"
+					aria-label="User Logout"
+					title="user logout"
+				>
 					🙋
 				</button>
 			</form>
-			
+			{% else %}
+			<a href="{% url 'users:register' %}"
+				><span role="img" aria-label="User Registration" title="user">🚀</span
+				>user register</a
+			>
+			|
+			<a href="{% url 'users:login' %}"
+				><span role="img" aria-label="User Login" title="user">🔒</span>user
+				login</a
+			> 
+			{% endif %}
 		</nav>
 		<main>{% block content %} {% endblock content %}</main>
 	</body>
