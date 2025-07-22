@@ -13,8 +13,9 @@
                         {{ post.title }}
                     </a>
                 </h2>
-                <p>{{ post.date }}</p>
+                <p>{{ post.date }} by {{ post.author }}</p>
                 <p>{{ post.body }}</p>
+
             </article>
         {% endfor %}
     </section>
